@@ -1,0 +1,47 @@
+
+
+{% extends "index3.html" %}
+{% block content %}
+
+
+<div class="jumbotron">
+
+<div class="table-responsive">
+<table class="table table-striped">
+<form class="form-signin" method="post" >
+
+  <thead>
+      <tr>
+
+      <th>NAME</th>
+      <th>PHONE</th>
+      </tr>
+
+      {% for v in name %}
+      <tr>
+      <td>{{ v }}</td>
+      <td>{{ v.phone }}</td>
+      <td><input type="checkbox" value={{v.id}} name="id"></td>
+      </tr>
+      {% endfor %}
+
+  </thead>
+
+</table>
+</div>
+<input  style="text-align:right" type="submit" value="Del"/>
+</form>
+<form class="form-signin" method="post" >
+
+Name:{{ form.name  }}
+Phone:{{ form.phone }}
+
+<input class="active" type="submit" value="添加新联系人"/>
+
+</form >
+
+
+</div>
+
+{% endblock %}
+

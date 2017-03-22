@@ -1,0 +1,164 @@
+{% extends "app_one1.html" %}
+{% block content %}
+      <div class="jumbotron">
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="tabbable" >
+			<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#panel-810515" data-toggle="tab">所有</a>
+			</li>
+				 {% for pro in pros%}
+			<li>
+				<a href="#{{pro.id}}" data-toggle="tab">{{pro}}</a>
+			</li>
+				{% endfor %}
+		</ul>
+	<div class="tab-content">
+<!-- ##### -->
+      <div class="tab-pane active" id="panel-810515">
+          <p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th> 标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in cons %}
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            </table>
+	</p>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if cons.has_previous %}
+            <a href="?page={{ cons.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ cons.number }} of {{ cons.paginator.num_pages }}.
+        </span>
+        {% if cons.has_next %}
+            <a href="?page={{ cons.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+	 </div>
+
+<!-- ##### -->
+
+        {% for pro in pros %}
+	<div class="tab-pane" name="1" id={{ pro.id }}>
+	<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>    
+
+            <tbody>
+              {% for s in cons %}
+              {% if  s.problem == pro %}
+              {{ cons }}
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+	</p>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if con.has_previous %}
+            <a href="?page={{ con.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ con.number }} of {{ con.paginator.num_pages }}.
+        </span>
+        {% if con.has_next %}
+            <a href="?page={{ con.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+	</div>
+        {% endfor %}
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
+
+<!--
+<div class="pagination">
+    <span class="step-links">
+        {% if cons.has_previous %}
+            <a href="?page={{ cons.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ cons.number }} of {{ cons.paginator.num_pages }}.
+        </span>
+        {% if cons.has_next %}
+            <a href="?page={{ cons.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% if cons.has_previous %}
+       <a class='paginator' title='上一页' href='?page={{ cons.previous_page_number }}'><span>&lt;&lt;</span></a>
+ {% endif %}
+ {% for page in cons.paginator.page_range %}
+     {% if page = cons.number %}
+         <a class='paginator_current' title='当前页:{{ page }}'><span>{{ page }}</span></a>
+     {% else %}
+         <a class='paginator' href='?page={{ page }}' title='{{ page }}'><span>{{ page }}</span></a>
+     {% endif %}
+ {% endfor %}
+ {% if cons.has_next %}
+     <a class='paginator' title='下一页' href='?page={{ cons.next_page_number }}'><span>&gt;&gt;</span></a>
+ {% endif %}
+
+    <ul class="pagination">
+      <li><a href="#">&laquo;</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">&raquo;</a></li>
+  </ul>
+-->
+
+
+        <div class="table-responsive">
+          <table class="table table-striped">
+
+
+      </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "index3.html" %}
+{% block content %}
+
+<form action="" method="post">
+  <p>Server: {{ form.server }} </p>
+  <p>Order: {{ form.order }} </p>
+
+  <input type="submit" value="Submit" />
+  <br>
+  {% for i in fruit %}
+  {{ i }}<br>
+  {% endfor %}
+
+
+</form>
+
+{% endblock %}

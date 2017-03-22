@@ -1,0 +1,9 @@
+{% for s in a %}
+
+<li>{{ s }}</li>
+{% for book in s.authors.all %}
+<li>{{book}}</li>
+{% endfor %}
+list
+{% endfor %}
+list

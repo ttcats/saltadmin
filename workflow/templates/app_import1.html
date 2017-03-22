@@ -1,0 +1,23 @@
+
+{% extends "untitled.html" %}
+{% block content %}
+
+
+<form class="form-signin" method="post" action="" enctype="multipart/form-data">
+
+<div class="jumbotron">
+<div class="table-responsive">
+<table class="table table-striped">
+
+{{ form.as_table }}
+
+</table>
+</div>
+<div class="form-group">
+<button class="btn btn-primary" type="submit">提交</button>
+<a class="btn btn-default" href="/app-one/">回到工单系统</a>
+</div>
+</div>
+
+</form>
+{% endblock %}

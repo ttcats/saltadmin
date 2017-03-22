@@ -1,0 +1,35 @@
+
+
+{% extends "index3.html" %}
+{% block content %}
+
+<div class="jumbotron">
+
+    <div class="table-responsive">
+    <table class="table table-striped">
+
+
+    <h2>项目名:    {{ pro.project }}</h2>
+    <br>
+    <h2>服务器IP:    {{ pro.ip }}</h2>
+    <br>
+    <h2>标签:   {% for i in pro.tags.all  %} {{ i }} {% endfor %}</h2>
+    <br>
+    <h2>告警内容:  {{ pro.content }}
+
+    <br>
+        {% if pro.img %}
+            <img src="/media/{{ pro.img  }}"/>
+        {% endif %}
+    </h2>
+	<br>
+    <h2>处理方法:  {{ pro.comment }}</h2>
+	<br>
+    <h2>告警处理人:  <a href="/zabbix-ad/">{{ pro.admin }}</a></h2>
+
+
+	</table>
+	</div>
+</div>
+
+{% endblock %}

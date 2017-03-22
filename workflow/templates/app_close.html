@@ -1,0 +1,248 @@
+{% extends "app_one1.html" %}
+{% block content %}
+      <div class="jumbotron">
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<div class="tabbable" >
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="#所有" data-toggle="tab">所有</a>
+					</li>
+					<li>
+						<a href="#硬件故障" data-toggle="tab">硬件故障</a>
+					</li>
+					<li>
+						<a href="#panel-942321" data-toggle="tab">系统故障</a>
+					</li>
+					<li>
+						<a href="#panel-942322" data-toggle="tab">网络故障</a>
+					</li>
+					<li>
+						<a href="#panel-942323" data-toggle="tab">电话故障</a>
+					</li>
+					<li>
+						<a href="#panel-942324" data-toggle="tab">打印机故障</a>
+					</li>
+					<li>
+						<a href="#panel-942325" data-toggle="tab">其它故障</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active" id="所有">
+						<p>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th> 标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag %}
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="硬件故障">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == hardware %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-942321">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == system %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-942322">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == network %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-942323">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th> 标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == telephone %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-942324">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th> 标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == printer %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+					<div class="tab-pane" id="panel-942325">
+						<p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th> 标题</th>
+                  <th>创建人</th>
+                  <th>创建时间</th>
+                  <th>紧急情况</th>
+                  <th>当前状态</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for s in con %}
+              {% if s.status == tag and s.problem == other %}
+<!--              <tr {% if forloop.counter|divisibleby:"2"  %} style="background-color: #66FF99" {% else %} style="background-color: #CCFF99"  {% endif %} > -->
+              <tr>
+                <td><a href="/index/{{ s.id }}/">{{ s.problem }}</a></td>
+                <td>{{ s.createuser }}</td>
+                <td>{{ s.createtime }}</td>
+                <td>{{ s.grade }}</td>
+                <td>{{ s.status }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+        <div class="table-responsive">
+          <table class="table table-striped">
+
+
+      </div>
+      </div>
+{% endblock %}

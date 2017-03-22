@@ -1,0 +1,115 @@
+
+
+{% extends "app_one1.html" %}
+{% block content %}
+
+<div class="jumbotron">
+
+
+    <div class="table-responsive span12">
+
+<form class="form-signin" method="post" action="" enctype="multipart/form-data">
+
+
+    <!-- <table class="table table-striped"> -->
+    <table class="table table-hover">
+<!-- <tr>
+<td> -->
+    <u>信息: <span> {{ pro.author }} {{ pro.createuser }} {{ pro.branch }}</span></u>
+
+<!--     </td>
+    </tr>
+
+    <tr>
+      <td> -->
+    <!-- <div style="color:" class="form-group"> -->
+    <hr></hr>
+    <br>
+   <strong>故障详情:</strong>
+    <br>
+    <pre>{{ pro.content }}
+    <br>{% if pro.img %}<img src="/media/{{ pro.img  }}" class="img-responsive"/>
+    {% endif %}<strong>故障处理人员:</strong> {{ pro.enumerate }}<br><strong>故障已经处理结束!</strong>
+    </pre>
+    <hr></hr>
+
+<!-- 评分-->
+
+
+
+{% if user == pro.author  or user == "root" %}
+
+<div class="form-group">
+ <label class="control-label" for="inputContent">评分:</label>
+<label class="radio-inline">
+ <input type="radio" name="score" id="inlineRadio1" value="1">1
+</label>
+<label class="radio-inline">
+ <input type="radio" name="score" id="inlineRadio1" value="2">2
+</label>
+<label class="radio-inline">
+ <input type="radio" name="score" id="inlineRadio1" value="3">3
+</label>
+<label class="radio-inline">
+ <input type="radio" name="score" id="inlineRadio1" value="4">4
+</label>
+<label class="radio-inline">
+ <input type="radio" name="score" id="inlineRadio1" value="5" checked>5
+</label>
+</div>
+<!-- </td>
+</tr> -->
+{% endif %}
+<!-- </td>
+</tr> -->
+
+
+<hr></hr>
+
+
+<!--评论 -->
+{% for com in coms %}
+<!-- <tr>
+<td> -->
+<!-- <div> -->
+<!-- <span class="date">{{ com.name }}{{ com.time|date:'Y年m月d日' }}</span> -->
+<span class="date ">{{ com.name }}  {{ com.time}}</span>
+<br>
+<span><pre>{{ com.content }}</pre></span>
+<!-- </td>
+</tr> -->
+<hr></hr>
+<!-- </div> -->
+
+{% endfor %}
+<!-- <tr><td> -->
+<div class="clearfix ">
+      <form id="threadForm" class="thread-form" enctype="multipart/form-data" action="/tickets/550298e1e4b0707125da4b3d/threads" method="post">
+        <div class="form-group">
+          <label class="control-label" for="inputContent">
+            回复
+          </label>
+          <textarea  rows="5" name="content" id="inputContent" class="form-control" placeholder="回复内容"></textarea>
+        </div>
+<!--    <div class="form-group pull-left" style="margin-bottom: 0;">
+          <label class="control-label" for="inputAttachment">附件</label>
+
+          <div class="controls">
+            <input name="attachment" id="inputAttachment" accept="*" type="file">
+          </div>
+        </div>-->    
+        <div class="form-group pull-right" style="margin-top: 8px; margin-bottom: 0;">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary btn-submit">确认</button>
+          </div>
+        </div>
+      </form>
+</div>
+<!-- </td></tr> -->
+
+</table>
+</div>
+</div>
+
+</form>
+{% endblock %}
