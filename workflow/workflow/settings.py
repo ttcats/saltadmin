@@ -211,7 +211,6 @@ CELERY_EMAIL_TASK_CONFIG = {
 
 
 
-#EMAIL_HOST = 'smtp.travelzen.com'
 EMAIL_HOST = 'mail1.test.com'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'test@test.com'

@@ -101,7 +101,7 @@ def One(request):
         tomail = dele.e_mail
         sendmail.delay(mail_title,mail_content,tomail)
         
-#        send_mail('Subject here',dele.entrepreneur,'ke.dong@travelzen.com',['835042664@qq.com'])
+#        send_mail('Subject here',dele.entrepreneur,'test@test.com',['835042664@qq.com'])
     return render_to_response('untitled.html', {'con':con, 'tag':tag, 'user':user, 'pros':pros,'ent':ent,'e_user':e_user,})
 
 
@@ -180,9 +180,9 @@ def Create(request):
                                      createtime=timezone.now(),
                                      img=img,
                                      grade=grade,)
-#                send_mail('Subject here','Here is the message.','ke.dong@travelzen.com',['835042664@qq.com'])
+#                send_mail('Subject here','Here is the message.','test@test.com',['835042664@qq.com'])
                 #sendmail.delay('Subject here')
-#                mail.send_mail('Subject here','Here is the message.','ke.dong@travelzen.com',['835042664@qq.com'])
+#                mail.send_mail('Subject here','Here is the message.','test@test.com',['835042664@qq.com'])
                 return HttpResponseRedirect('/app-one/')
         else:
             form = createquestion()
@@ -250,7 +250,7 @@ def Index(request, app_id):
             mail_title = pro.problem
             tomail = use.email
             sendmail.delay(mail_title,mail_content,tomail)
-#            send_mail('Subject here','Here is the message.','ke.dong@travelzen.com',['835042664@qq.com'])
+#            send_mail('Subject here','Here is the message.','test@test.com',['835042664@qq.com'])
             event = pro.enumerate
             even = Entrepreneur.objects.filter(entrepreneur=event)
             for i in even:
@@ -336,19 +336,19 @@ def create_mail():
     begin = Status.objects.get(id=2)
     send_begin_event = Event.objects.filter(status=begin)
     for i in send_begin_event:
-        Author_email = i.author + '@travelzen.com'
+        Author_email = i.author + '@test.com'
         Enumerate_email = i.enumerate.e_mail
         createuser = i.createuser
         title = 'author' + i.author + 'createuser' + i.createuser
         message = i.content
-        send_mail(title, message, 'ke.dong@travelzen.com', [Enumerate_email])
+        send_mail(title, message, 'test@test.com', [Enumerate_email])
 
 def confirm_mail():
     end = Status.objects.get(id=3)
     send_end_event = Event.objects.filter(status=end)
     for s in send_end_event:
-        Author_email = s.author + '@travelzen.com'
+        Author_email = s.author + '@test.com'
         problem = s.problem.ploblem
         message = '故障处理完成,请登陆工单确认'
-        send_mail(problem, message, 'ke.dong@travelzen.com', [Author_email])
+        send_mail(problem, message, 'test@test.com', [Author_email])
 

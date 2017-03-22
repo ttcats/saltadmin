@@ -18,5 +18,5 @@ def test(data,**kwargs):
 
 @task
 def sendmail(title,content,tomail,**kwargs):
-  send_mail(title,content,'ke.dong@travelzen.com',[tomail])
+  send_mail(title,content,'test@test.com',[tomail])
   return "mail_titile mail_content to %s ... " % content
