@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>SaltStack Admin - 主机管理 - 添加主机</title>
+<meta name="description" content="Luxiaok" />
+<meta name="keywords" content="Luxiaok" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="apple-touch-icon" href="/static/images/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/static/css/custom.css" type="text/css" />
+<!-- 用户列表css样式 --> 
+<link rel="stylesheet" href="/static/css/tables.css" type="text/css" />
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<!--
+Could be loaded remotely from Google CDN : 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+-->
+<!-- Superfish Navigation -->
+<script type="text/javascript" src="/static/js/jquery.superfish.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.supersubs.min.js"></script>
+<!-- 新增主机 -->
+<script type="text/javascript" src="/static/js/reports.js"></script>
+<!-- 顶部导航和底部隐藏的导航的特效输出 -->
+<script type="text/javascript" src="/static/js/nav.show.menu.js"></script>
+</head>
+<body>
+	<!-- Header -->
+	<%include file="header.html" args="curM='report',ShowName=ShowName,uid=uid" />
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>添加故障</h1>
+			<!-- Quick search box -->
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+	      <div>
+<form name="hostForm" id="hostForm" action="/report/add">
+<table class="maintable">
+  <tr>
+      <input type="text" name="id" id="id" class="maininput" value="none" style="display:none"/>
+      <td class="textLeft">故障时间</td>
+      <td class="inputRight"><input type="text" name="time" id="time" class="maininput"/></td>
+      <td class="textLeft">故障描述</td>
+      <td class="inputRight"><input type="text" name="faulty" class="maininput"/></td>
+  </tr>
+  <tr>
+      <td class="textLeft">关联主机</td>
+      <td class="inputRight"><input type="text" name="hostip" class="maininput" /></td>
+      <td class="textLeft">关联项目</td>
+      <td class="inputRight"><input type="text" name="project" class="maininput" /></td>
+  </tr>
+  <tr>
+      <td class="textLeft">故障等级</td>
+      <td class="inputRight"><select name="level" id="level" class="selectmenu">
+	  <option value=""  selected="selected">-- 选择故障等级 --</option>
+        % for x in SD['level']:
+          <option value="${x}">${x}</option>
+        % endfor
+          </select></td>
+      <td class="textLeft">处理结果</td>
+      <td class="inputRight"><select name="status" id="status" class="selectmenu">
+	    <option value=""  selected="selected">-- 选择状态 --</option>
+        % for x in SD['status']:
+          <option value="${x}">${x}</option>
+        % endfor
+      </select></td>
+  </tr>
+  <tr>
+      <td class="textLeft">上报人</td>
+      <td class="inputRight"><input type="text" name="user" class="maininput" /></td>
+      <td class="textLeft">处理时间</td>
+      <%!
+       import time
+       NowDate = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+      %>
+      <td class="inputRight"><input type="text" name="lasttime" class="maininput" value="${NowDate}"/></td>
+  </tr>
+</table>
+    <div class="submitArea">
+		<div class="reset"><a href="javascript:void(0)" onClick="resetForm()" class="btn"><span class="icon icon-reset">&nbsp;</span>重 置</a></div>
+		<div class="submit"><a href="javascript:void(0)" onClick="submitForm('hostForm')" class="btn"><span class="icon icon-ok">&nbsp;</span>保 存</a></div>
+	</div>
+</form>
+	      </div>
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+<%include file="footer.html" />	
+</body>
+</html>

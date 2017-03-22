@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>SaltStack Admin - 项目配置 - ${pd.name}</title>
+<meta name="description" content="Luxiaok" />
+<meta name="keywords" content="Luxiaok" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="apple-touch-icon" href="/static/images/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/static/css/custom.css" type="text/css" />
+<!-- 用户列表css样式 --> 
+<link rel="stylesheet" href="/static/css/tables.css" type="text/css" />
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<!--
+Could be loaded remotely from Google CDN : 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+-->
+<!-- Superfish Navigation -->
+<script type="text/javascript" src="/static/js/jquery.superfish.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.supersubs.min.js"></script>
+<!-- 删除项目函数确认 -->
+<script type="text/javascript" src="/static/js/project.add.js"></script>
+<!-- 顶部导航和底部隐藏的导航的特效输出 -->
+<script type="text/javascript" src="/static/js/nav.show.menu.js"></script>
+<!-- 动态添加配置 -->
+<script type="text/javascript" src="/static/js/project.config.js"></script>
+</head>
+<body>
+	<!-- Header -->
+	<%include file="header.html" args="curM='admin',ShowName=ShowName,uid=uid" />
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>项目配置管理</h1>
+		</div>
+	</div>
+	<!-- End of Page title -->
+	
+	<!-- Page content -->
+	<div id="page">
+		<!-- Wrapper -->
+		<div class="wrapper">
+		<div>
+		  <table width="100%">
+		  <tr>
+			  <td><h3>项目基本信息：${pd.name}</h3></td>
+        <!--<td align='right'><a href="/project/edit" class="btn"><span class="icon icon-ok">&nbsp;</span>修改基本信息</a></td>-->
+      </tr>
+      </table>
+			</div>
+<div>
+<form name="projectForm" id="projectForm" action="/project/config">
+<table class="maintable" id="WebConfig">
+  <tr>
+    <td class="textLeft">开发语言/框架</td>
+    <!--<td class="inputRight"><input type="text" name="lang" id="lang" value="${pd.lang}" class="maininput"/></td>-->
+    <td class="inputRight"><select name="lang" id="lang" class="selectmenu">
+    % for x in selects['frame']:
+      % if str(pd['lang']) == str(x['id']):
+      <option value="${x['id']}" selected="selected">${x['value']}</option>
+      % else:
+      <option value="${x['id']}">${x['value']}</option>
+      % endif
+    % endfor
+    </select></td>
+    <td class="textLeft">信息录入</td>
+    <td class="inputRight">${pd.creator}</td>
+  </tr>
+  <tr>
+    <td class="textLeft">开发者</td>
+    <td class="inputRight"><input type="text" name="developer" id="developer" value="${pd.developer}" class="maininput"/></td>
+    <td class="textLeft">上线日期</td>
+    <td class="inputRight">${pd.cdate}</td>
+  </tr>
+  <tr>
+    <td class="textLeft">业务类型</td>
+    <td class="inputRight"><select name="type" id="type" class="selectmenu">
+    % for b in selects['business']:
+      % if str(pd['type']) == str(b['id']):
+      <option value="${b['id']}" selected="selected">${b['value']}</option>
+      % else:
+      <option value="${b['id']}">${b['value']}</option>
+      % endif
+    % endfor
+    </select></td>
+    <!--<td class="inputRight">${pd.type}</td>-->
+    <td class="textLeft">信息更新</td>
+    <td class="inputRight">${pd.editor}</td>
+  </tr>
+  <tr>
+    <td class="textLeft">状态</td>
+    <td class="inputRight"><select name="status" id="status" class="selectmenu">
+    % for s in selects['status']:
+      % if str(pd['status']) == str(s['id']):
+      <option value="${s['id']}" selected="selected">${s['value']}</option>
+      % else:
+      <option value="${s['id']}">${s['value']}</option>
+      % endif
+    % endfor
+    </select></td>
+    <!--<td class="inputRight">${pd.status}</td>-->
+    <td class="textLeft">信息更新日期</td>
+    <td class="inputRight">${pd.mdate}</td>
+  </tr>
+  <tr>
+    <td class="textLeft">所属项目</td>
+    <td class="inputRight"><select name="pro" id="pro" class="selectmenu">
+    % for p in selects['project']:
+      % if str(pd['pro']) == str(p['id']):
+      <option value="${p['id']}" selected="selected">${p['value']}</option>
+      % else:
+      <option value="${p['id']}">${p['value']}</option>
+      % endif
+    % endfor
+    </select></td>
+    <!--<td class="inputRight">${pd.pro}</td>-->
+    <td class="textLeft">备注信息</td>
+    <td class="inputRight"><input type="text" name="comment" id="comment" value="${pd.comment}" class="maininput"/></td>
+  </tr>
+
+  <tr>
+    <td><h3>应用所在服务器地址</h3></td>
+    <td></td>
+    <td></td>
+    <td align="right">
+    <a href="javascript:void(0)" class="btn" onclick='addRow("WebConfig")'><span class="icon icon-add">&nbsp;</span>添加IP端口</a>
+    </td>
+  </tr>
+
+  % for ip in pd['ip_add'].split(','):
+  <tr>
+    <td class="textLeft">主机IP端口</td>
+    <td class="inputRight"  id="bw_1" ><input type="text" name="bw" value="${ip}" class="maininput" /><a href="javascript:void(0)" onclick='removeRow(this)'>删除</a></td>
+  </tr>
+  % endfor
+</table>
+<!--
+<% s = '' %>
+% for i in sm:
+<% s += "<option value=%s >%s</option>" % (i[0],i[1]) %>
+% endfor
+<div class="LineLeft"><h3>应用所在服务器地址</h3></div>
+<div class="LineRight">
+<a href="javascript:void(0)" class="btn" onclick='addRow("WebConfig","${s}")'><span class="icon icon-add">&nbsp;</span>添加IP端口</a>
+</div>
+
+<div><form name="testForm" id="testForm" method="POST" action="/project/config">
+<table class="maintable" id="WebConfig">
+  <tr>
+    <td class="textLeft">主机IP1</td>
+    <td class="inputRight" name="bw" id="bw_1">
+	  <input type="text" class="maininput" />
+    </td>
+    <td class="textLeft">端口</td>
+    <td class="inputRight"><input type="text" name="bwconf" class="maininput" /> <a href="javascript:void(0)" onclick='removeRow(this)'>删除</a></td>
+  </tr>
+  <tr>
+    <td class="textLeft">主机IP2</td>
+    <td class="inputRight" name="bw" id="bw_2">
+	  <input type="text" class="maininput" />
+    </td>
+    <td class="textLeft">端口</td>
+    <td class="inputRight"><input type="text" name="bwconf" class="maininput" /> <a href="javascript:void(0)" onclick='removeRow(this)'>删除</a></td>
+  </tr>
+</table>-->
+<div class="submitArea">
+	<div class="reset"><a href="javascript:void(0)" onClick="resetForm()" class="btn"><span class="icon icon-reset">&nbsp;</span>重 置</a></div>
+	<div class="submit"><a href="javascript:void(0)" onClick="ubmitForm('WebConfig','${pd.id}')" class="btn"><span class="icon icon-ok">&nbsp;</span>保 存</a></div>
+</div>
+</form></div>
+<!--
+	<div class="submitArea">
+		<div class="reset"><a href="javascript:void(0)" onClick="resetForm()" class="btn"><span class="icon icon-reset">&nbsp;</span>重 置</a></div>
+		<div class="submit"><a href="javascript:void(0)" onClick="submitForm('projectForm')" class="btn"><span class="icon icon-ok">&nbsp;</span>保 存</a></div>
+	</div>
+##</form>-->
+	      </div>
+		</div>
+		<!-- End of Wrapper -->
+	</div>
+	<!-- End of Page content -->
+<%include file="footer.html" />	
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="description" content="Luxiaok" />
+<meta name="keywords" content="Luxiaok" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+<script type="text/javascript" src="/static/js/query.js"></script>
+</head>
+<body>
+            <form action="">
+            <select name="customers" onchange="showCustomers(this.value)" style="font-family:Verdana, Arial, Helvetica, sans-serif;">
+	    ${s}
+            <!--<option value="Mysql,user">Mys</option>
+            <option value="Mysql,test">Pgs</option>
+            <option value="Mysql,system">MongoDB</option>-->
+            </select>
+            </form>
+            <br>
+            <div id="txtHi"></div>  
+</body>
+</html>

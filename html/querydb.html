@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>SaltStack Admin - 报告 - 故障上报</title>
+<meta name="description" content="Luxiaok" />
+<meta name="keywords" content="Luxiaok" />
+<!-- We need to emulate IE7 only when we are to use excanvas -->
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<![endif]-->
+<!-- Favicons --> 
+<link rel="shortcut icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="icon" type="image/png" href="/static/images/favicons/favicon.png"/>
+<link rel="apple-touch-icon" href="/static/images/favicons/apple.png" />
+<!-- Main Stylesheet --> 
+<link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+<!-- Your Custom Stylesheet --> 
+<link rel="stylesheet" href="/static/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="/static/css/query.css" type="text/css" />
+<!-- 用户列表css样式 --> 
+<link rel="stylesheet" href="/static/css/tables.css" type="text/css" />
+<!-- jQuery with plugins -->
+<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+<!-- Superfish Navigation -->
+<script type="text/javascript" src="/static/js/jquery.superfish.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.supersubs.min.js"></script>
+<!-- 顶部导航和底部隐藏的导航的特效输出 -->
+<script type="text/javascript" src="/static/js/nav.show.menu.js"></script>
+<script type="text/javascript" src="/static/js/sql_test.js"></script>
+<script>
+</script>
+
+<style type="text/css">
+ul,ol,li {
+	list-style: none;
+	list-style-type: none;
+}
+
+span:hover {
+background: #06C;
+cursor:pointer;
+color: #FFF
+}
+
+.schema.current {
+	/*background-color: red;*/
+	background: #06C;
+	color: #fff;
+}
+
+.onsc_sq {
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+	border: 3px solid rgb(204, 204, 204);
+	float: left;
+	height: 650px;
+	width: 300px;
+	overflow: auto;
+}
+
+.onsc_s {
+	margin-left: 0px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	border-width: 0px 3px 3px; 
+	border-style: solid; 
+	border-color: rgb(204, 204, 204); 
+	-moz-border-top-colors: none; 
+	-moz-border-right-colors: none; 
+	-moz-border-bottom-colors: none; 
+	-moz-border-left-colors: none; 
+	border-image: none; 
+	height: 260px; 
+	overflow-x: auto;
+}
+
+.onsc_down {
+	margin-left: 0px; 
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%; 
+	border-width: 1px 3px 3px; 
+	border-style: solid; 
+	border-color: rgb(204, 204, 204); 
+	-moz-border-top-colors: none; 
+	-moz-border-right-colors: none; 
+	-moz-border-bottom-colors: none; 
+	-moz-border-left-colors: none; 
+	border-image: none; 
+	height: 340px; 
+	overflow-x: auto;
+}
+
+.onsc_sq_div {
+	/*background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+	border: 3px solid rgb(204, 204, 204);
+	float: left;
+	overflow: auto;*/
+	border: 2px solid rgb(204, 204, 204);
+	margin-left:0px;
+	/*background:#ffffef;*/
+	height: 30px;"
+}
+
+</style>
+
+</head>
+<body>
+	<!-- Header -->
+	<%include file="header.html" args="curM='cloud',ShowName=ShowName,uid=uid" />
+	<!-- End of Header -->
+	<!-- Page title -->
+	<div id="pagetitle">
+		<div class="wrapper">
+			<h1>数据库查询</h1>
+			<!-- Quick search box -->
+		</div>
+	</div>
+	<div id="page">
+	<div class="wrapper">
+	<input type="button" onclick="ergodic()" value="Sub">
+	<div>
+
+	<div id="onsc_sql" class="onsc_sq" >
+		<div class="onsc_sq_div" >
+			<a style="margin-left:40px;">Choose:</a>
+			<select name="customers" onchange="showCustomer(this.value)" style="font-family:Verdana, Arial, Helvetica, sans-serif;">
+				<option value="mysql">Mysql</option>
+				<option value="pgsql">Pgsql</option>
+				<option value="mongoDB">MongoDB</option>
+			</select>
+		</div>
+		<div id="txtHi">
+		</div>
+	</div>
+
+	<div>
+
+			<div  class="onsc_sq_div">
+				<a>查询分析器</a>
+			</div>
+			<div class="onsc_s">
+				<textarea id="tet" style="width:100%;height:99%;"></textarea>
+			</div>
+
+		<div  style="margin-left:0px; background:#ffffef;BORDER-left: #ccc 7px solid;height: 26px;">
+			<div>
+				<a>输出</a>
+			</div>
+			<div id="onse_onput" class="onsc_down">
+			</div>
+		</div>
+
+	</div>
+
+	</div>
+	</div>
+	</div>
+
+
+
+
+<script>
+	$(function(){
+
+		$("body").delegate("#txtHi span.schema", "click", function(){
+			$("#txtHi span.schema").removeClass("current");
+			$(this).addClass("current");
+		});
+
+	});
+</script>
+
+	<!-- End of Page content -->
+<%include file="footer.html" />	
+</body>
+</hml>

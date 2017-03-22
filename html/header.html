@@ -1,0 +1,101 @@
+<%page args="curM,ShowName,uid"/>
+	<header id="top">
+		<div class="wrapper">
+			<!-- Title/Logo - can use text instead of image -->
+			<div id="title"><img src="/static/images/logo.png" alt="SaltStack Admin" title="SaltStack Admin Beta&#10;Powered by Luxiaok" style="cursor:pointer" /><!--<span>Administry</span> demo--></div>
+			<!-- Top navigation -->
+			<div id="topnav">
+				<a href="/users/edit?id=${uid}"><img class="avatar" src="/static/images/user_32.png" alt="${ShowName}" title="${ShowName}"/></a>
+				欢迎您，<b>${ShowName}</b>！
+				<span>|</span> <a href="/users/edit?id=${uid}">设置</a>
+				<span>|</span> <a href="/logout">退出</a><br />
+				<small>您有<a href="#" class="high"><b>3</b>条信息</a></small>
+			</div>
+			<!-- End of Top navigation -->
+			
+			<!-- Main navigation -->
+<%
+# 高亮当前导航菜单的判断
+def curMenu(curM,curName):
+    if curM == curName:
+        return 'class="current"'
+    else:
+        return 'class=""'
+%>
+<nav id="menu">	
+    <ul class="sf-menu">
+        <li ${curMenu(curM,'dashboard')}><a href="/dashboard">控制中心</a></li>
+        <li ${curMenu(curM,'admin')}><a href="/admin/config">管理</a>
+            <ul>
+                <li><a href="/hosts">主机管理</a>
+                    <ul>
+	                <li><a href="/hosts">资产管理</a></li>
+	                <li><a href="/hosts/add">添加主机</a></li>
+                    </ul>
+                </li>
+                <li><a href="/project">应用管理</a>
+                    <ul>
+	                <li><a href="/project">应用管理</a></li>
+	                <li><a href="/project/add">添加应用</a></li>
+                    </ul>
+                </li>
+                <li><a href="/users">用户管理</a>
+                    <ul>
+	                <li><a href="/users">用户管理</a></li>
+	                <li><a href="/users/add">添加用户</a></li>
+                    </ul>
+                </li>
+                <li><a href="/options">选项管理</a></li>
+                <li><a href="/hosts">资产管理</a></li>
+            </ul>
+        </li>
+        <li  ${curMenu(curM,'monitor')}><a href="#">内部链接</a>
+            <ul>
+                <li><a href="#">Zabbix Prod</a></li>
+                <li><a href="#">Zabbix Beta</a></li>
+                <li><a href="#">Zabbix API</a></li>
+                <li><a href="#">OPS</a></li>
+                <li><a href="#">Wiki</a></li>
+            </ul>
+        </li>
+        <li ${curMenu(curM,'salt')}><a href="#">SaltStack</a>
+            <ul>
+                <li><a href="/salt/minion_status">主机管理</a></li>
+                <li><a href="/salt/status">实时状态</a></li>
+                <li><a href="/salt/cmd">命令下发</a></li>
+                <li><a href="/salt/config">配置管理</a></li>
+                <li><a href="/salt/key">认证管理</a></li>
+                <li><a href="/salt/file">文件分发</a></li>
+                <li><a href="/salt/release">发布管理</a></li>
+            </ul>
+        </li>
+        <li ${curMenu(curM,'report')}><a href="/report/fault">日志</a>
+            <ul>
+                <li><a href="/report/fault">故障日志列表</a></li>
+                <li><a href="/report/add">上报故障</a></li>
+                <li><a href="/report/releaselog">发布日志</a></li>
+                <li><a href="/report/querysqllog">数据库查询日志</a></li>      
+            </ul>
+        </li>
+        <li ${curMenu(curM,'cloud')}><a href="/db/sqltest">数据库查询</a></li>
+        <li ${curMenu(curM,'pool')}><a href="/nginx/pool">资源池</a></li>
+        <li ${curMenu(curM,'passwd')}><a href="/encryption">密码加密</a></li>
+        <!--<li ${curMenu(curM,'test')}><a href="/test">测试页面</a></li>-->
+    </ul>
+</nav>
+
+			<!-- End of Main navigation -->
+			<!-- Aside links -->
+			<aside>
+            <%!
+            import datetime
+            import time
+            NowDate = time.strftime("%Y年%m月%d日",time.localtime(time.time()))
+            WeekID = time.strftime("%w",time.localtime(time.time()))
+            wid = int(WeekID)
+            Week = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六']
+            %>
+            <div style=font-size:12px><b>${NowDate} ${Week[wid]}</b></div></aside>
+			<!-- End of Aside links -->
+		</div>
+	</header>
